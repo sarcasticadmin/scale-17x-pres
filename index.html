@@ -29,11 +29,11 @@
                                   <h1 class='fragment grow'> presented by Rob Hernandez: <a href="http://twitter.com/sarcasticadmin/">@sarcasticadmin</a>, <br />Sr. Systems Engineer</h1>
 				</section>
 				<section>So you want to commit some changes to an open source project?</section>
-				<section>My first PR</section>
+				<section>Story of my first PR</section>
                                 <section id='pregitconfig'>
 				<code>Whose making the changes?</code>
-<pre class='fragment'><code>commit 28b1edb4a5a823c910a5d86ea3514ab982bcf3d1
-Author: Rob Hernandez <rob@sarcasticadmin.com>
+<pre class='fragment'><code data-noescape>commit 28b1edb4a5a823c910a5d86ea3514ab982bcf3d1
+Author: Rob Hernandez &lt;rob@sarcasticadmin.com&gt;
 Date:   Fri Feb 1 12:16:59 2019 -0800
 
     Updates to vim dictionary
@@ -41,9 +41,9 @@ Date:   Fri Feb 1 12:16:59 2019 -0800
 				</section>
                                 <section id='gitconfig'>
 				    <code>Configure .gitconfig</code>
-				    <p>Add your name and email at a minimum</p>
+				    <div class='fragment'><p>Add your name and email at a minimum</p>
 				    <pre><code >git config --global user.name "Rob Hernandez"
-git config --global user.email "rob@sarcasticadmin.com"</code></pre>
+git config --global user.email "rob@sarcasticadmin.com"</code></pre></div>
                                     <div class='fragment'><p>This adds configuration to your user's ~/.gitconfig</p>
 					    <pre class='fragment'><code>~$ cat ~/.gitconfig
 [user]
@@ -54,13 +54,24 @@ email = rob@sarcasticadmin.com</code></pre></div>
 				    <code>Without a .gitconfig</code>
 				    <p>git wont be able to identify the author of the commit</p>
 				    <pre class='fragment'><code>commit e0c03273720e088b157f53611ba4483b18d4cba6 (HEAD -> master)
-Author: Rob <rherna@robs-desktop.local>
+Author: Rob &lt;rherna@robs-desktop.local&gt;
 Date:   Sun Feb 24 12:15:31 2019 -0800
 
     Adding a new file
 </code></pre>
                                     <div class='fragment'><p>Instead it will use the info about the current user and system</p>
 			      </section>
+                              <section id='gitmisconfig2'>
+		                <code>Bonus! github will track your contributions</code>
+			        <img src="./imgs/commit-heatmap.png" >
+			      </section>
+			      <section>
+                                <code>Fork the project</code>
+                                <div>
+			        <img src="./imgs/forking.gif" >
+                                </div>
+                              </section>
+
 			</div>
 		</div>
 
