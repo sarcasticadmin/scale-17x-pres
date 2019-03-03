@@ -24,12 +24,97 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Git Committed</section>
 				<section >
-                                  <h1 class='fragment grow'> presented by Rob Hernandez: <a href="http://twitter.com/sarcasticadmin/">@sarcasticadmin</a>, <br />Sr. Systems Engineer</h1>
+                                  <code>Git Committed</code>
+                                  <br/>
+                                  <br/>
+                                  <h4>by Rob Hernandez <br/>Sr. Systems Engineer<a href="http://twitter.com/nebulaworks/"> @nebulaworks</a></h4>
 				</section>
-				<section>So you want to commit some changes to an open source project?</section>
-				<section>Story of my first PR</section>
+
+				<section>
+                                  <div>
+                                  <img src="./imgs/gitlogo.png" style="background-color: transparent; border: 0;" alt="gitlogo">
+                                  </div>
+                                </section>
+
+				<section>
+                                  <code>What is git?</code>
+				  <div class='fragment'>
+                                  <pre><code>~$ man git
+Git is a fast, scalable, distributed revision control system with an
+unusually rich command set that provides both high-level operations and
+full access to internals.
+...</code></pre>
+                                  </div>
+				<div class='fragment'><p>Its a way to manage a set of files over time</p></div>
+                                </section>
+				<section>
+				    <code>What can git manage?</code>
+				    <div class='fragment'><p>Text files</p></div>
+				    <div class='fragment'><p>Binary files</p></div>
+                                    <div class='fragment'><p>Git can be used to manage any kind of file</p></div>
+				</section>
+
+				<section>
+                                <div>
+			        <img src="./imgs/opensource.jpg" style="background-color:white;" alt="opensource">
+                                </div>
+                                </section>
+
+                                <section>
+                                  <code>My first PR</code>
+                                </section>
+
+                                <section>
+                                <div>
+			        <img src="./imgs/saltstacklogo.png" style="background-color:transparent; border: 0;" alt="saltstacklogo">
+                                </div>
+                                </section>
+
+                                <section>
+				<code>My fix</code>
+                                <div>
+			        <pre><code class='diff'>diff --git a/salt/modules/freebsdpkg.py b/salt/modules/freebsdpkg.py
+index b3bfe1a3d9..63e0a4cb87 100644
+--- a/salt/modules/freebsdpkg.py
++++ b/salt/modules/freebsdpkg.py
+@@ -85,7 +85,7 @@ def refresh_db():
+         __salt__['cmd.run']('portsnap update')
+
+
+-def install(name, **kwargs):
++def install(name, *args, **kwargs):
+     '''
+     Install the passed package
+</code></pre>
+                                </div>
+				<div class='fragment'><p>Straight forward enough</p>
+                                </div>
+                                </section>
+
+				<section>
+                                <code>Resulted in</code>
+                                <div>
+			        <img src="./imgs/kill-bill.gif" style="background-color: transparent; border: 0;" width="500" alt="">
+                                </div>
+                                </section>
+
+				<section id='allthings'>
+				    <code>To get this merged required</code>
+                                    <div class='fragment'><li>fork the git project</li></div>
+				    <div class='fragment'><li>git clone down the fork</li></div>
+				    <div class='fragment'><li>create a branch for my changes</li></div>
+				    <div class='fragment'><li>commit my changes</li></div>
+				    <div class='fragment'><li>push up my branch</li></div>
+				    <div class='fragment'><li>submit a pull request</li></div>
+                                </section>
+
+				<section id='how'>
+				    <code>This was a lot for just a oneline change</code>
+                                </section>
+				<section>
+				    <code>Where to start?</code>
+                                </section>
                                 <section id='pregitconfig'>
 				<code>Whose making the changes?</code>
 <pre class='fragment'><code data-noescape>commit 28b1edb4a5a823c910a5d86ea3514ab982bcf3d1
@@ -41,10 +126,10 @@ Date:   Fri Feb 1 12:16:59 2019 -0800
 				</section>
                                 <section id='gitconfig'>
 				    <code>Configure .gitconfig</code>
-				    <div class='fragment'><p>Add your name and email at a minimum</p>
+				    <div class='fragment'><p>Add your name and email</p>
 				    <pre><code >git config --global user.name "Rob Hernandez"
 git config --global user.email "rob@sarcasticadmin.com"</code></pre></div>
-                                    <div class='fragment'><p>This adds configuration to your user's ~/.gitconfig</p>
+                                    <div class='fragment'><p>config created in user's ~/.gitconfig</p>
 					    <pre class='fragment'><code>~$ cat ~/.gitconfig
 [user]
 name  = Rob Hernandez
@@ -52,25 +137,308 @@ email = rob@sarcasticadmin.com</code></pre></div>
 				</section>
                                 <section id='gitmisconfig'>
 				    <code>Without a .gitconfig</code>
-				    <p>git wont be able to identify the author of the commit</p>
+				    <p>Unable to identify the author</p>
 				    <pre class='fragment'><code>commit e0c03273720e088b157f53611ba4483b18d4cba6 (HEAD -> master)
-Author: Rob &lt;rherna@robs-desktop.local&gt;
+Author: Minion &lt;minion@thinkpad230x.local&gt;
 Date:   Sun Feb 24 12:15:31 2019 -0800
 
     Adding a new file
 </code></pre>
-                                    <div class='fragment'><p>Instead it will use the info about the current user and system</p>
+                                    <div class='fragment'><p>uses the info about the current user and system</p></div>
 			      </section>
+
                               <section id='gitmisconfig2'>
-		                <code>Bonus! github will track your contributions</code>
-			        <img src="./imgs/commit-heatmap.png" >
+		                <code>Bonus! Remotes will track contributions</code>
+			        <img src="./imgs/commit-heatmap.png" alt="">
 			      </section>
-			      <section>
-                                <code>Fork the project</code>
+
+                              <section>
+                                <code>A simple git workflow</code>
                                 <div>
-			        <img src="./imgs/forking.gif" >
+			        <img src="./imgs/git-workflow.png" style="background-color: transparent; border: 20;" width="500" alt="">
                                 </div>
                               </section>
+
+                              <section id='examplerepo'>
+		                <code>Find a repo</code>
+			        <img src="./imgs/firstcontrib-repo.png" alt="">
+                                </br>
+                                <a href="https://github.com/firstcontributions/first-contributions"> First Contributors on Github </a>
+			      </section>
+                              <section>
+                                <code>Fork the project repo</code>
+                                <div>
+			        <img src="./imgs/fork.png" style="background-color: transparent; border: 0;" width="500" alt="">
+                                </div>
+                              </section>
+
+
+
+                              <section>
+                                <div>
+			        <img src="./imgs/forking.gif" alt="">
+                                </div>
+                             </section>
+                             <section>
+                                <code>Get the URL or SSH string of fork</code>
+                                <div>
+			        <img src="./imgs/clone-url.png" style="background-color: transparent; border: 0;" width="500" alt="">
+                                </div>
+                             </section>
+                            
+                             <section>
+                                <code>git workflow</code>
+                                <div>
+			        <img src="./imgs/git-workflow.png" style="background-color: transparent; border: 20;" width="500" alt="">
+                                </div>
+                              </section>
+
+                             <section id='gitclone'>
+				    <code>Clone the repo down</code>
+				    <div class='fragment'>
+				    <pre><code>~$ git clone git@github.com:sarcasticadmin/first-contributions.git</code></pre>
+                                    </div>
+                                    <div class='fragment'><p>Navigate into the repo</p>
+					    <pre class='fragment'><code>~$ cd first-contributions</code></pre></div>
+				</section>
+                              <section id='gitremotes'>
+				    <code>What did git clone do?</code>
+				    <div class='fragment'>
+				    <p>Retrieved the source code</p>
+				    <pre><code>~$ tree -L 1
+.
+|-- CODE_OF_CONDUCT.md
+|-- Contributors.md
+|-- LICENSE
+|-- README.md
+|-- additional-material
+|-- assets
+|-- github-desktop-old-version-tutorial.md
+|-- github-desktop-tutorial.md
+|-- github-windows-vs-code-tutorial.md
+|-- github-windows-vs2017-tutorial.md
+|-- gitkraken-tutorial.md
+|-- package-lock.json
+`-- translations
+
+3 directories, 10 files
+
+                                    </code></pre>
+                                    </div>
+			     </section>
+
+                             <section id=''>
+				    <code>Additionally git clone</code>
+				    <div class='fragment'>
+				    <p>Adds a remote</p>
+				    <pre><code>~$ git remote -v
+origin  git@github.com:sarcasticadmin/first-contributions.git (fetch)
+origin  git@github.com:sarcasticadmin/first-contributions.git (push)</code></pre>
+                                    </div>
+                                    <div class='fragment'><p>Sets the default branch</p>
+					    <pre><code>~$ git status
+On branch master
+nothing to commit, working tree clean</code></pre>
+                                    </div>
+			     </section>
+
+                             <section>
+                                <code>default branch? master?</code>
+			        <div class='fragment'>
+			        <img src="./imgs/tree.png" style="background-color: transparent; border: 0;" width="300" alt="">
+                                <p>the fattest and longest span is the trunk(master), not the branches</p>
+                                </div>
+                             </section>
+
+
+
+                             <section id='gitbranch'>
+				    <code>Create a branch for your changes</code>
+				    <div class='fragment'>
+				    <pre><code>~$ git checkout -b mychanges-1</code></pre>
+                                    </div>
+				    <div class='fragment'>
+				    <pre><code>~$ git status
+On branch mychanges-1
+nothing to commit, working tree clean
+</code></pre>
+                                    </div>
+                                    <div class='fragment'><p>We're now on our new branch</p>
+                                    </div>
+			     </section>
+
+			     <section id='makechanges'>
+				    <code>Lets modify the branch</code>
+				    <div class='fragment'>
+				      <pre><code>~$ cat << EOF >> Contributors.md
+- [Rob Hernandez](https://github.com/sarcasticadmin)
+EOF</code></pre>
+                                    </div>
+				    <div class='fragment'>
+                                      <pre><code>~$ git status</code></pre>
+                                      <div>
+                                      <img src="./imgs/git-status-modified2.png" style="background-color: transparent; border: 0;" alt="gitstatus-mod2">
+                                      </div>
+                                    </div>
+                                    <div class='fragment'><p>git detected a change!</p>
+                                    </div>
+			     </section>
+
+			     <section id='addchanges'>
+				    <code>Stage the change</code>
+                                    <div class='fragment'>
+                                      <pre><code>~$ git add Contributors.md</code></pre>
+                                    </div>
+                                    <div class='fragment'>
+                                    <pre><code>~$ git status</code></pre>
+                                    <img src="./imgs/git-status-staged.png" style="background-color: transparent; border: 0;" alt="gitstatus-staged">
+                                    </div>
+                                    <div class='fragment'><p>git staged the change!</p>
+                                    </div>
+			     </section>
+
+                             <section>
+				    <code>Commit it to the branch</code>
+                                    <div class='fragment'>
+                                      <pre><code>~$ git commit -m "Add rob to Contributors list"</code></pre>
+                                    </div>
+                                    <div class='fragment'>
+                                    <pre><code>~$ git status
+On branch mychanges-1
+nothing to commit, working tree clean
+</code></pre>
+                                    </div>
+                                    <div class='fragment'><p>what happened to the change?</p>
+                                    </div>
+			     </section>
+
+                             <section>
+				    <code>Check the git log</code>
+                                    <div class='fragment'>
+                                      <pre><code>~$ git log</code></pre>
+                                    <img src="./imgs/git-log.png" style="background-color: transparent; border: 0;" alt="gitlog">
+                                    </div>
+			     </section>
+                              
+                             <section>
+                                <code>git workflow</code>
+                                <div>
+			        <img src="./imgs/git-workflow.png" style="background-color: transparent; border: 20;" width="500" alt="">
+                                </div>
+                              </section>
+
+                             <section>
+				    <code>Push up the commit</code>
+                                    <div class='fragment'>
+                                      <pre><code>~$ git push origin mychanges-1</code></pre>
+                                    </div>
+			     </section>
+
+                             <section>
+				    <code>Pre Pull Request</code>
+				    <div class='fragment'><p>check repo documentation</p></div>
+				    <div class='fragment'><p>check existing issues/pull requests</p></div>
+			     </section>
+
+                             <section>
+				    <code>Submit the PR</code>
+                                    <div class='fragment'>
+                                    <img src="./imgs/git-pr.png" style="background-color: transparent; border: 0;" alt="gitstatus-staged">
+                                    </div>
+                                    <div class='fragment'><p>submit against the upstream master</p></div>
+                                    <div class='fragment'><p>include a detailed description</p></div>
+			     </section>
+
+
+                             <section>
+                                    <img src="./imgs/simon-1.gif" style="background-color: transparent; border: 0;" alt="">
+			     </section>
+                            
+                             <section>
+				    <code>Merged upstream</code>
+                                    <div class='fragment'>
+                                    <img src="./imgs/merge-button.png" style="background-color: transparent; border: 0;" alt="gitstatus-staged">
+                                    </div>
+			     </section>
+
+
+                             <section>
+				    <code>Other considerations</code>
+                                    <ol type="1">
+				    <div><li>Pull updates from upstream repo</li></div>
+                                    <div><li>Merge conflict</li></div>
+                                    </ol>
+			     </section>
+
+                             <section>
+                                <code>Pull updates from upstream</code>
+                                <div>
+			        <img src="./imgs/git-workflow.png" style="background-color: transparent; border: 20;" width="500" alt="">
+                                </div>
+                              </section>
+                             <section>
+				    <code>Configure upstream</code>
+                                    <div class='fragment'>
+                                    <pre><code>~$ git add remote upstream https://github.com/firstcontributions/first-contributions.git</code></pre>
+                                    <div class='fragment'>
+                                    <pre><code>~$ git remote -v
+origin  git@github.com:sarcasticadmin/first-contributions.git (fetch)
+origin  git@github.com:sarcasticadmin/first-contributions.git (push)
+upstream        https://github.com/firstcontributions/first-contributions.git (fetch)
+upstream        https://github.com/firstcontributions/first-contributions.git (push)</code></pre>
+                                    </div>
+			     </section>
+
+                             <section>
+				    <code>Update master upstream</code>
+                                    <div class='fragment'>
+                                      <pre><code>~$ git checkout master
+~$ git pull --rebase upstream master</code></pre>
+                                    </div>
+				    <div class='fragment'><p>Always keep local master identical to upstream master</p></div>
+			     </section>
+
+			     <section>
+				    <code>Other considerations</code>
+                                    <ol type="1">
+				    <div><s><li>Pull updates from upstream repo</li></s></div>
+				    <div><li>Merge conflict</li></div>
+                                    </ol>
+			     </section>
+                              
+			     <section>
+				    <code>Merge conflict</code>
+			            <img src="./imgs/merge-conflict.png" style="background-color: transparent; border: 20;" width="500" alt="">
+                                    <div class='fragment'><p>Now what?</p>
+                                    </div>
+			     </section>
+                              
+                             <section>
+				    <code>Other considerations</code>
+                                    <ol type="1">
+				    <div><s><li>Pull updates from upstream repo</li></s></div>
+                                    <div><s><li>Merge conflict</li></s></div>
+                                    </ol>
+			     </section>
+                             <section>
+                                    <img src="./imgs/sensei.gif" style="background-color: transparent; border: 0;" alt="">
+			     </section>
+
+                              <section>
+				    <code>Example repo</code>
+                                    </br>
+                                    <a href="https://github.com/firstcontributions/first-contributions"> First Contributors on Github </a>
+			     </section>
+
+                              <section >
+                                  <code>Thank you</code>
+                                  <br/>
+                                  <br/>
+                                  <h4>Rob Hernandez <a href="http://twitter.com/sarcasticadmin/"> @sarcasticadmin</a></h4>
+                                  <h4>Github: <a href="https://github.com/sarcasticadmin/"> sarcasticadmin</a></h4>
+				</section>
+
+
 
 			</div>
 		</div>
@@ -83,6 +451,10 @@ Date:   Sun Feb 24 12:15:31 2019 -0800
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+                                //make room for wide code
+                                history: true,
+                                width: '80%',
+                                height: '100%',
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
